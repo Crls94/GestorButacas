@@ -1,0 +1,5 @@
+com\gestorbutacas\MainController.class
+com\gestorbutacas\model\SalaCine.class
+com\gestorbutacas\App.class
+com\gestorbutacas\model\Butaca$Estado.class
+com\gestorbutacas\model\Butaca.class
