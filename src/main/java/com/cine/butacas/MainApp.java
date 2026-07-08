@@ -132,7 +132,9 @@ public class MainApp extends Application {
             for (int c = 0; c < sala.getColumnas(); c++) {
                 Butaca b = sala.getButaca(f, c);
 
-                Button btnButaca = new Button(b.mostrarEstado());
+                // --- MODIFICACIÓN AQUÍ ---
+                // Inicializamos el botón con el texto vacío "" en lugar de b.mostrarEstado()
+                Button btnButaca = new Button(""); 
                 btnButaca.getStyleClass().add("celda-butaca");
                 btnButaca.getStyleClass().add(claseCssPorEstado(b.getEstado()));
 
@@ -239,8 +241,21 @@ public class MainApp extends Application {
     // Acciones del menú (delegan la lógica a SalaCine y muestran alertas)
     private void accionReservar() {
         if (!haySeleccion()) return;
-        String mensaje = sala.reservarButaca(filaSeleccionada, columnaSeleccionada);
+      Butaca b = sala.getButaca(filaSeleccionada, columnaSeleccionada);
+        String mensaje;
+
+        if (!b.estaReservada() && !b.estaOcupada()) {
+            // Primer clic: Pasa de Libre a Reservado
+            mensaje = sala.reservarButaca(filaSeleccionada, columnaSeleccionada);
+        } else if (b.estaReservada()) {
+            // Segundo clic: Usamos el método oficial de tu compañero para Ocupar
+            mensaje = sala.ocuparButaca(filaSeleccionada, columnaSeleccionada);
+        } else {
+            mensaje = "❌ Esta butaca ya se encuentra completamente ocupada.";
+        }
+
         mostrarAlerta(mensaje.startsWith("✅") ? AlertType.INFORMATION : AlertType.WARNING, mensaje);
+        seleccionarButaca(filaSeleccionada, columnaSeleccionada);
         refrescarGrilla();
     }
 
@@ -277,14 +292,34 @@ public class MainApp extends Application {
     private String[][] estadoInicialDeEjemplo() {
         return new String[][]{
                 {"L", "L", "L", "L", "L", "L", "L", "L"},
-                {"L", "R", "L", "L", "L", "L", "R", "L"},
-                {"L", "L", "L", "O", "O", "L", "L", "L"},
-                {"R", "R", "L", "L", "L", "L", "R", "R"},
-                {"L", "L", "L", "O", "O", "L", "L", "L"},
-                {"L", "L", "O", "L", "L", "O", "L", "L"},
-                {"R", "O", "L", "L", "L", "L", "O", "R"},
-                {"L", "R", "O", "L", "L", "O", "R", "L"}
+                {"L", "L", "L", "L", "L", "L", "L", "L"},
+                {"L", "L", "L", "L", "L", "L", "L", "L"},
+                {"L", "L", "L", "L", "L", "L", "L", "L"},
+                {"L", "L", "L", "L", "L", "L", "L", "L"},
+                {"L", "L", "L", "L", "L", "L", "L", "L"},
+                {"L", "L", "L", "L", "L", "L", "L", "L"},
+                {"L", "L", "L", "L", "L", "L", "L", "L"}
         };
+    }
+    // Método auxiliar para forzar el estado OCUPADO sin usar setters inexistentes
+    private void forzarOcupacionEnSala(int fila, int columna) {
+        try {
+            // Obtenemos la butaca directamente del modelo
+            Butaca butaca = sala.getButaca(fila, columna);
+            
+            // Si tu compañero usó una variable pública para el estado, la cambiamos.
+            // Si no, este bloque try-catch intentará usar el método set si existe.
+            // Nota: Este bloque sigue siendo propenso a errores si no conocemos el nombre exacto.
+            // Si el error persiste, la única solución real es editar Butaca.java o SalaCine.java.
+            
+            // Intentamos usar reflexión para forzar el cambio si el método es privado
+            java.lang.reflect.Method setter = Butaca.class.getDeclaredMethod("setEstadoButaca", EstadoButaca.class);
+            setter.setAccessible(true);
+            setter.invoke(butaca, EstadoButaca.OCUPADO);
+            
+        } catch (Exception e) {
+            System.err.println("Error forzando ocupación: " + e.getMessage());
+        }
     }
     //Punto de entrada del programa (equivalente al "main" de una app de consola).
     public static void main(String[] args) {

@@ -51,6 +51,11 @@
     -fx-cursor: hand;
     -fx-text-fill: white;
     -fx-border-color: transparent;
+    
+    /* PROPIEDADES NUEVAS NUEVAS PARA IMÁGENES: */
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: contain;
 }
 
 .celda-butaca:hover {
@@ -65,23 +70,54 @@
     -fx-border-radius: 8;
 }
 
+
 .estado-libre {
-    -fx-background-color: #22c55e; /* verde */
+    -fx-background-color: #222634;
+    -fx-border-color: #3b8755;              /* Verde suave */
+    -fx-border-width: 2.5px;
+    -fx-border-radius: 8px;
+    -fx-background-image: url("butaca_libre.jpg"); /* Imagen limpia */
 }
 
 .estado-reservado {
-    -fx-background-color: #f59e0b; /* ámbar */
+    -fx-background-color: #222634;
+    -fx-border-color: #d19228;              /* Ámbar / Amarillo suave */
+    -fx-border-width: 2.5px;
+    -fx-border-radius: 8px;
+    -fx-background-image: url("butaca_reservada.jpg"); /* <--- NUEVA IMAGEN AQUÍ */
 }
 
 .estado-ocupado {
-    -fx-background-color: #ef4444; /* rojo */
+    -fx-background-color: #222634;
+    -fx-border-color: #b35353;              /* Rojo suave */
+    -fx-border-width: 2.5px;
+    -fx-border-radius: 8px;
+    -fx-background-image: url("butaca_ocupada.jpg"); /* Imagen ocupada */
 }
 
-.texto-leyenda {
-       -fx-text-fill: #ffffff;
-       -fx-font-size: 13px;
-       -fx-font-weight: 600;
-   }
+/* 3. Para que la leyenda de arriba también muestre los colores e imágenes: */
+.celda-leyenda {
+    -fx-min-width: 16px;
+    -fx-min-height: 16px;
+    -fx-max-width: 16px;
+    -fx-max-height: 16px;
+    -fx-background-radius: 4px;
+    -fx-background-image: none !important; 
+    -fx-border-color: transparent !important;
+}
+
+/* Colores planos originales de tu compañero para la leyenda */
+.celda-leyenda.estado-libre {
+    -fx-background-color: #22c55e;
+}
+
+.celda-leyenda.estado-reservado {
+    -fx-background-color: #f59e0b; /* Recuperamos el amarillo original */
+}
+
+.celda-leyenda.estado-ocupado {
+    -fx-background-color: #ef4444;
+}
    
 /* Leyenda superior*/
 .celda-leyenda {
