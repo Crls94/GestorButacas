@@ -1,0 +1,133 @@
+/* Hoja de estilos de la aplicación "Gestión de Butacas de Cine" */
+
+.root-pane {
+    -fx-background-color: linear-gradient(to bottom right, #1b1f2a, #262b3a);
+}
+
+.titulo-app {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f5c518;
+    -fx-padding: 10 0 0 0;
+}
+
+.texto-instrucciones {
+    -fx-text-fill: #cfd3dc;
+    -fx-font-size: 12px;
+}
+
+.texto-seleccion {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-color: #333a4d;
+    -fx-padding: 8;
+    -fx-background-radius: 8;
+}
+
+.texto-contador {
+    -fx-text-fill: #a3e635;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+/* Encabezados de la grilla (F1, C1, etc.) */
+.encabezado-grilla {
+    -fx-text-fill: #f5c518;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-min-width: 34px;
+    -fx-alignment: center;
+}
+
+/* Celdas de butaca (botones) */
+.celda-butaca {
+    -fx-min-width: 34px;
+    -fx-min-height: 34px;
+    -fx-max-width: 34px;
+    -fx-max-height: 34px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+}
+
+.celda-butaca:hover {
+    -fx-opacity: 0.85;
+    -fx-scale-x: 1.08;
+    -fx-scale-y: 1.08;
+}
+
+.celda-seleccionada {
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2.5;
+    -fx-border-radius: 8;
+}
+
+.estado-libre {
+    -fx-background-color: #22c55e; /* verde */
+}
+
+.estado-reservado {
+    -fx-background-color: #f59e0b; /* ámbar */
+}
+
+.estado-ocupado {
+    -fx-background-color: #ef4444; /* rojo */
+}
+
+.texto-leyenda {
+       -fx-text-fill: #ffffff;
+       -fx-font-size: 13px;
+       -fx-font-weight: 600;
+   }
+   
+/* Leyenda superior*/
+.celda-leyenda {
+    -fx-min-width: 16px;
+    -fx-min-height: 16px;
+    -fx-max-width: 16px;
+    -fx-max-height: 16px;
+    -fx-background-radius: 4;
+}
+
+/* Botones del panel de control */
+.boton-accion {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 8 12;
+    -fx-cursor: hand;
+}
+.boton-accion:hover {
+    -fx-background-color: #2563eb;
+}
+
+.boton-secundario {
+    -fx-background-color: #6b7280;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-padding: 8 12;
+    -fx-cursor: hand;
+}
+.boton-secundario:hover {
+    -fx-background-color: #4b5563;
+}
+
+.boton-salir {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 8 12;
+    -fx-cursor: hand;
+}
+.boton-salir:hover {
+    -fx-background-color: #b91c1c;
+}
+
+.scroll-grilla {
+    -fx-background-color: transparent;
+}
